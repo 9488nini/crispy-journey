@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OPIc IM3 → IH/AL 3.5-Day Sprint</title>
+<style>
+:root{
+  --bg:#f7f7fb; --card:#ffffff; --text:#20222a; --muted:#686b77;
+  --line:#e6e7ec; --accent:#5b5bd6; --accent2:#8a63d2; --good:#15803d;
+  --warn:#b45309; --bad:#b91c1c; --soft:#f0efff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.62}
+header{background:linear-gradient(135deg,#3f3f9e,#7651b5);color:white;padding:44px 20px 36px}
+.wrap{max-width:1040px;margin:auto}
+h1{margin:0 0 10px;font-size:clamp(30px,5vw,48px);line-height:1.15}
+.subtitle{font-size:17px;opacity:.93;max-width:820px}
+.badge{display:inline-block;background:#ffffff22;border:1px solid #ffffff44;border-radius:999px;padding:5px 10px;margin:8px 6px 0 0;font-size:13px}
+main{padding:24px 16px 80px}
+nav{position:sticky;top:0;z-index:5;background:#f7f7fbdd;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:10px 0;margin:0 -16px 20px}
+nav .wrap{display:flex;gap:8px;overflow:auto;padding:0 16px}
+nav a{white-space:nowrap;text-decoration:none;color:var(--text);background:white;border:1px solid var(--line);border-radius:999px;padding:7px 11px;font-size:13px}
+section{margin:22px 0 34px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:14px 0;box-shadow:0 4px 18px rgba(0,0,0,.025)}
+h2{font-size:26px;margin:0 0 12px}
+h3{font-size:19px;margin:18px 0 8px}
+h4{font-size:16px;margin:12px 0 6px}
+p{margin:8px 0}
+.small{font-size:13px;color:var(--muted)}
+.key{background:var(--soft);border-left:4px solid var(--accent);padding:13px 15px;border-radius:10px;margin:12px 0}
+.good{background:#ecfdf3;border-left-color:var(--good)}
+.warn{background:#fff8e8;border-left-color:var(--warn)}
+.bad{background:#fff1f2;border-left-color:var(--bad)}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#f5f5f7;padding:2px 5px;border-radius:5px}
+.en{font-weight:650}
+.ko{color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media(max-width:760px){.grid,.grid3{grid-template-columns:1fr}.card{padding:17px}header{padding-top:34px}}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th,td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:left;vertical-align:top}
+th{background:#fafafa}
+.tag{display:inline-block;border-radius:999px;padding:3px 8px;font-size:12px;background:#eee;margin-right:4px}
+.tag.ih{background:#e8f3ff;color:#155e9a}
+.tag.al{background:#f0eaff;color:#6b3db5}
+details{border:1px solid var(--line);border-radius:14px;background:white;margin:10px 0;overflow:hidden}
+summary{cursor:pointer;padding:14px 16px;font-weight:700}
+details>div{padding:0 16px 16px}
+.script{background:#111827;color:#f9fafb;border-radius:13px;padding:14px 16px;white-space:pre-wrap;font-size:14px;line-height:1.7}
+.highlight{color:#fbbf24;font-weight:700}
+button{border:0;border-radius:10px;padding:10px 14px;background:var(--accent);color:white;font-weight:700;cursor:pointer}
+button.secondary{background:#ececf8;color:#35356e}
+.timer{font-size:40px;font-weight:800;letter-spacing:1px;margin:6px 0}
+.prompt{font-size:19px;font-weight:700;background:#fafafa;border:1px dashed #bbb;border-radius:12px;padding:15px;margin:10px 0}
+.checklist label{display:block;padding:7px 0}
+input[type=checkbox]{transform:scale(1.15);margin-right:7px}
+hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+footer{color:var(--muted);font-size:12px;margin-top:50px}
+.print-note{display:none}
+@media print{
+  nav,button,.interactive{display:none!important}
+  body{background:white}
+  .card,details{box-shadow:none;break-inside:avoid}
+  details>div{display:block!important}
+  summary{list-style:none}
+  .print-note{display:block}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>OPIc IM3 → IH / AL<br>3.5-Day Sprint</h1>
+    <div class="subtitle">수요일 저녁 → 일요일 오전. “고급 표현 암기”가 아니라 <b>문단 단위 말하기, 과거·현재·미래 서술, 비교, 문제 해결, 자연스러운 복구</b>를 자동화하는 시험 직전용 교재.</div>
+    <span class="badge">목표: IH 안정권</span>
+    <span class="badge">상향: AL 방식으로 답하기</span>
+    <span class="badge">90초 중심</span>
+    <span class="badge">실전 말하기용</span>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#core">핵심 원칙</a>
+    <a href="#万能">만능문장</a>
+    <a href="#structures">질문별 구조</a>
+    <a href="#topics">자주 연습할 주제</a>
+    <a href="#roleplay">롤플레이</a>
+    <a href="#unexpected">돌발</a>
+    <a href="#schedule">3.5일 루틴</a>
+    <a href="#drill">랜덤 훈련</a>
+    <a href="#check">자가채점</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section id="core">
+<h2>1. IM3에서 IH/AL로 갈 때 바꿔야 하는 것</h2>
+<div class="card">
+<table>
+<tr><th>IM3에 머물기 쉬운 답</th><th>IH/AL 쪽으로 가는 답</th></tr>
+<tr><td>짧은 문장 여러 개 나열</td><td><b>하나의 중심 이야기</b>를 문단처럼 연결</td></tr>
+<tr><td>현재 습관만 말함</td><td><b>과거 경험 + 당시 상황 + 결과</b>를 넣음</td></tr>
+<tr><td>“I like it because it is fun.”</td><td>왜 그런지 <b>구체적 장면/예시</b>로 설명</td></tr>
+<tr><td>틀리면 멈춤</td><td>틀려도 <b>paraphrase / self-correction</b>으로 계속 감</td></tr>
+<tr><td>어려운 단어 욕심</td><td>쉬운 단어로 <b>길고 이해 가능하게</b> 전달</td></tr>
+<tr><td>모든 질문에 동일한 암기문</td><td>외운 블록을 <b>질문에 맞게 조합</b></td></tr>
+</table>
+<div class="key good"><b>이번 시험의 한 문장 목표:</b> “모든 질문을 60~100초 정도, 한 가지 핵심을 잡고, 이유·장면·느낌까지 연결해서 말한다.”</div>
+</div>
+
+<div class="grid3">
+<div class="card"><h3>① Topic</h3><p>질문에 바로 답한다.</p><p class="en">I'd say the biggest reason is...</p></div>
+<div class="card"><h3>② Detail</h3><p>사람·장소·시간·행동을 붙인다.</p><p class="en">For example, last weekend...</p></div>
+<div class="card"><h3>③ Story</h3><p>사건 → 반응 → 결과.</p><p class="en">At first..., but then..., so...</p></div>
+</div>
+</section>
+
+<section id="万能">
+<h2>2. 반드시 입에 붙여둘 “만능문장”</h2>
+<p class="small">문장 전체를 로봇처럼 암기하지 말고, 아래 블록을 자기 경험에 꽂아 넣는다.</p>
+
+<div class="card">
+<h3>A. 시작 10초 — 생각 정리 시간을 자연스럽게 벌기</h3>
+<table>
+<tr><td class="en">Hmm, that's an interesting question.</td><td>생각할 1초 확보. 매번 쓰지는 말기.</td></tr>
+<tr><td class="en">Actually, I've thought about this before.</td><td>의견/선호 질문에 좋음.</td></tr>
+<tr><td class="en">If I had to pick one, I'd say ___.</td><td>선택·선호 질문.</td></tr>
+<tr><td class="en">The first thing that comes to mind is ___.</td><td>경험 하나 꺼낼 때.</td></tr>
+<tr><td class="en">There are a few things I could talk about, but the biggest one is ___.</td><td>AL스럽게 범위를 좁히기.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>B. 이유를 “한 단계 더” 설명하기</h3>
+<table>
+<tr><td class="en">The main reason is that ___.</td><td>가장 안전한 이유 시작.</td></tr>
+<tr><td class="en">What I like most about it is ___.</td><td>선호.</td></tr>
+<tr><td class="en">What makes it special for me is ___.</td><td>개인화.</td></tr>
+<tr><td class="en">It's not just because ___; it's also because ___.</td><td>이유 2개 연결.</td></tr>
+<tr><td class="en">That may sound simple, but it actually makes a big difference because ___.</td><td>쉬운 내용을 깊게 확장.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>C. 구체적 경험으로 들어가는 신호</h3>
+<table>
+<tr><td class="en">I remember one time when ___.</td><td>과거 경험 만능.</td></tr>
+<tr><td class="en">A good example would be when ___.</td><td>예시.</td></tr>
+<tr><td class="en">Just recently, I ___.</td><td>최근 경험.</td></tr>
+<tr><td class="en">There was this one time when things didn't go as planned.</td><td>문제·돌발 경험.</td></tr>
+<tr><td class="en">I didn't expect it at all, so I was pretty surprised.</td><td>감정 넣기.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>D. 이야기를 이어 주는 접착제</h3>
+<div class="grid">
+<div>
+<h4>순서</h4>
+<p class="en">At first, ...</p>
+<p class="en">Then, ...</p>
+<p class="en">After that, ...</p>
+<p class="en">Eventually, ...</p>
+<p class="en">In the end, ...</p>
+</div>
+<div>
+<h4>반전 / 문제</h4>
+<p class="en">But here's the thing.</p>
+<p class="en">The problem was that...</p>
+<p class="en">Things got a little complicated because...</p>
+<p class="en">What I didn't realize was that...</p>
+<p class="en">Luckily / Unfortunately, ...</p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<h3>E. 감정·반응 — 점수보다 “사람처럼 말하기”</h3>
+<table>
+<tr><td class="en">I was honestly a little nervous at first.</td><td>처음 감정.</td></tr>
+<tr><td class="en">I was relieved because ___.</td><td>문제 해결 후.</td></tr>
+<tr><td class="en">I ended up really enjoying it.</td><td>예상 밖 좋은 경험.</td></tr>
+<tr><td class="en">It was frustrating at the time, but now I can laugh about it.</td><td>에피소드 마무리.</td></tr>
+<tr><td class="en">Looking back, I'm glad I did it.</td><td>회고.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>F. 막혔을 때 살리는 복구문장 — 매우 중요</h3>
+<div class="key warn"><b>목표는 완벽한 문법이 아니라 대화를 끊지 않는 것.</b> 단, filler를 과도하게 반복하지 않는다.</div>
+<table>
+<tr><td class="en">Let me think for a second.</td><td>짧게 생각.</td></tr>
+<tr><td class="en">How should I put this?</td><td>표현 찾기.</td></tr>
+<tr><td class="en">What I'm trying to say is ___.</td><td>다시 설명.</td></tr>
+<tr><td class="en">Actually, let me rephrase that.</td><td>자기 수정.</td></tr>
+<tr><td class="en">I don't know the exact word in English, but it's basically ___.</td><td>단어 모를 때 묘사.</td></tr>
+<tr><td class="en">I can't remember the exact name, but ___.</td><td>고유명사 막힐 때.</td></tr>
+<tr><td class="en">Anyway, the point is that ___.</td><td>길 잃었을 때 본론 회수.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>G. 비교/변화 만능문장</h3>
+<table>
+<tr><td class="en">Compared to the past, ___ has changed a lot.</td><td>변화 시작.</td></tr>
+<tr><td class="en">The biggest difference is ___.</td><td>핵심 1개.</td></tr>
+<tr><td class="en">Back then, I used to ___, but these days, I ___.</td><td>과거 vs 현재.</td></tr>
+<tr><td class="en">One thing that hasn't changed is ___.</td><td>변화 질문 확장.</td></tr>
+<tr><td class="en">Overall, I'd say it's much more convenient now.</td><td>마무리 의견.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>H. 의견 / 사회 변화 / 왜 중요한지</h3>
+<table>
+<tr><td class="en">Personally, I think ___ has become much more important.</td><td>의견 시작.</td></tr>
+<tr><td class="en">From my point of view, the biggest issue is ___.</td><td>문제 제시.</td></tr>
+<tr><td class="en">One reason is ___, and another is ___.</td><td>2개 이유.</td></tr>
+<tr><td class="en">For ordinary people, this means ___.</td><td>영향 설명.</td></tr>
+<tr><td class="en">So, if you ask me, ___ is probably the best option.</td><td>결론.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>I. 마무리 5초</h3>
+<p class="en">So yeah, that's probably why I enjoy it so much.</p>
+<p class="en">That's the experience that stands out the most to me.</p>
+<p class="en">Since then, I've tried to ___ whenever I can.</p>
+<p class="en">Overall, it was a memorable experience for me.</p>
+<p class="small">억지로 “That's all.” 하지 말고, 내용으로 닫는다.</p>
+</div>
+</section>
+
+<section id="structures">
+<h2>3. 잘 나오는 질문 “유형”별 90초 답변 구조</h2>
+
+<details open>
+<summary>① 묘사: Describe your home / neighborhood / favorite place.</summary>
+<div>
+<p><span class="tag ih">IH</span> <b>한눈에 보이는 핵심 → 2~3개 특징 → 내가 왜 좋아하는지 → 짧은 에피소드</b></p>
+<div class="script"><span class="highlight">[Direct answer]</span> My favorite place in my neighborhood is a small café near my home.
+<span class="highlight">[Picture]</span> It's not very big, but it has large windows and a really relaxed atmosphere.
+<span class="highlight">[Personal detail]</span> What I like most is that it's usually quiet, so I can sit there for a long time.
+<span class="highlight">[Mini story]</span> I remember going there after a really busy day. I ordered an iced coffee, put my phone away, and just sat by the window for about an hour.
+<span class="highlight">[Feeling]</span> I felt much better afterward, so now it's kind of my go-to place when I need a break.</div>
+<p class="ko">포인트: 가구 5개 나열 X. “이 장소가 내 삶에서 어떤 역할을 하는지”까지.</p>
+</div>
+</details>
+
+<details>
+<summary>② 일상/루틴: What do you usually do when you ___?</summary>
+<div>
+<p><b>평소 패턴 → 구체적인 순서 → 예외/선호 → 왜 그렇게 하는지</b></p>
+<div class="script">Usually, when I watch a movie at home, I do it pretty late in the evening.
+First, I choose something light and entertaining because I don't really want a heavy movie after a long day.
+Then I get something to drink, turn off the lights, and put my phone on silent.
+I usually watch movies by myself, but if there's a really fun action movie, I sometimes watch it with someone else.
+The best part is that I can pause whenever I want, so it's much more comfortable than going to a theater on a weekday.</div>
+</div>
+</details>
+
+<details>
+<summary>③ 과거 경험: Tell me about a memorable time when ___.</summary>
+<div>
+<p><span class="tag al">AL 핵심</span> <b>배경 → 사건 → 예상 밖 요소 → 내 행동 → 결과 → 회고</b></p>
+<div class="script"><span class="highlight">[Background]</span> One experience that really stands out happened on a trip I took recently.
+<span class="highlight">[Situation]</span> I had planned to visit a few places, but I hadn't organized everything in detail.
+<span class="highlight">[Complication]</span> At one point, I realized I was running much later than expected and I still had to get back across the city.
+<span class="highlight">[Action]</span> So I quickly changed my plan, checked the transportation options, and decided to skip one stop.
+<span class="highlight">[Result]</span> It actually worked out well, and I got back without any major problem.
+<span class="highlight">[Reflection]</span> At the time I was stressed, but looking back, it made the trip more memorable and taught me to keep my plans flexible.</div>
+<p class="ko">AL 느낌을 내는 핵심은 “문제가 있었다 → 대응했다”가 자연스럽게 들어가는 것.</p>
+</div>
+</details>
+
+<details>
+<summary>④ 비교: Compare ___ in the past and now.</summary>
+<div>
+<p><b>큰 차이 1개 선언 → 과거 → 현재 → 구체적 사례 → 평가</b></p>
+<div class="script">Compared to the past, the way I watch movies has changed quite a lot.
+When I was younger, going to the theater felt like the normal way to watch a new movie.
+These days, I use streaming services much more often because they're convenient and I can choose exactly when to watch something.
+For example, if I get home late, I can still watch half a movie and finish it the next day.
+I still enjoy theaters for big action movies, but overall, watching movies at home has become my default.</div>
+<p class="ko">“과거에는 A, 지금은 B, 또 C…” 식으로 병렬 나열하지 말고 큰 차이 하나를 깊게.</p>
+</div>
+</details>
+
+<details>
+<summary>⑤ 선호/이유: What do you like most about ___? Why?</summary>
+<div>
+<p><b>선택 → 이유 → 구체적 장면 → 다른 선택과 짧게 비교 → 결론</b></p>
+<div class="script">If I had to pick one thing, I'd say convenience is what matters most to me.
+The main reason is that my schedule can get pretty busy, so I don't want something that requires a lot of planning.
+For example, when I choose a café, I usually prefer a place that's easy to get to and where I can stay comfortably for a while.
+Of course, a beautiful interior is nice, but if the place is crowded or inconvenient, I probably won't go back.
+So for me, convenience matters more than appearance.</div>
+</div>
+</details>
+
+<details>
+<summary>⑥ 변화/트렌드: How has ___ changed in your country?</summary>
+<div>
+<p><span class="tag al">AL</span> <b>변화 선언 → 과거 → 원인 → 현재 사례 → 사람들에게 미친 영향 → 의견</b></p>
+<div class="script">I think the biggest change is how much people rely on mobile apps now.
+In the past, people had to call or visit a place in person for many simple things.
+But as smartphones became more common, a lot of services moved online.
+Now people can make reservations, order food, pay, and even handle customer service from their phones.
+For ordinary people, this saves a lot of time, although it can also be frustrating when an app doesn't work properly.
+Overall, though, I think the change has made everyday life much more convenient.</div>
+</div>
+</details>
+
+<details>
+<summary>⑦ 문제 경험: Tell me about a time something went wrong.</summary>
+<div>
+<p><b>원래 계획 → 문제 발생 → 왜 문제였는지 → 해결 과정 → 결과 → 배운 점</b></p>
+<div class="script">I remember one time when something went wrong while I was traveling.
+I was supposed to follow my original schedule, but I realized I didn't have enough time to do everything.
+The problem was that if I stayed any longer, I might miss the transportation I needed later.
+So I checked my options, changed the order of my plans, and gave up one activity.
+Luckily, that solved the problem.
+It was disappointing for a moment, but it reminded me that when I travel, it's better to prioritize than try to do everything.</div>
+</div>
+</details>
+
+<details>
+<summary>⑧ 의견: What do people think about ___? What do you think?</summary>
+<div>
+<p><b>내 입장 → 이유 1 → 실제 영향/예 → 반대쪽 인정 → 최종 판단</b></p>
+<div class="script">Personally, I think using AI tools can be very helpful when they're used for the right kinds of tasks.
+The biggest benefit is that they can save time on repetitive work.
+For example, they can help organize information or generate a first draft very quickly.
+That said, I don't think people should trust every answer automatically, because AI can still make mistakes.
+So I think the best approach is to use it as a tool, but still check important information yourself.</div>
+</div>
+</details>
+</section>
+
+<section id="topics">
+<h2>4. 이번 3일 동안 우선 연습할 주제</h2>
+<div class="key"><b>중요:</b> 아래는 “시험에 반드시 나온다”는 목록이 아니라, 어떤 설문 조합에서도 응용하기 좋은 대표 연습군이다. 실제 시험은 선택한 Background Survey와 시험 폼에 따라 달라질 수 있다.</div>
+
+<div class="grid">
+<div class="card">
+<h3>생활 공간</h3>
+<ul>
+<li>집 묘사</li><li>동네 묘사</li><li>동네에서 자주 가는 곳</li><li>과거와 현재 동네 변화</li><li>동네에서 기억나는 일</li>
+</ul>
+</div>
+<div class="card">
+<h3>여가</h3>
+<ul>
+<li>영화/드라마</li><li>카페/음식</li><li>음악</li><li>산책/공원</li><li>친구와 보내는 시간</li>
+</ul>
+</div>
+<div class="card">
+<h3>여행</h3>
+<ul>
+<li>최근 여행</li><li>가장 기억나는 여행</li><li>여행 준비 과정</li><li>여행 중 문제</li><li>국내 vs 해외 여행</li>
+</ul>
+</div>
+<div class="card">
+<h3>학교/직장</h3>
+<ul>
+<li>하루 루틴</li><li>하는 일 설명</li><li>기억나는 프로젝트</li><li>예전과 달라진 방식</li><li>기술이 미친 영향</li>
+</ul>
+</div>
+<div class="card">
+<h3>기술/서비스</h3>
+<ul>
+<li>스마트폰/앱</li><li>온라인 쇼핑</li><li>스트리밍</li><li>AI/디지털 도구</li><li>과거 vs 현재</li>
+</ul>
+</div>
+<div class="card">
+<h3>돌발 대비</h3>
+<ul>
+<li>교통</li><li>날씨</li><li>은행/예약</li><li>건강한 생활 일반</li><li>환경/재활용</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="roleplay">
+<h2>5. 롤플레이: 이것만큼은 패턴화</h2>
+
+<div class="card">
+<h3>5-1. 정보 문의: “전화해서 3~4개 질문하기”</h3>
+<div class="script">Hi, I'm calling because I'm interested in ___, and I have a few questions.
+
+First, could you tell me ___?
+Also, I'd like to know ___.
+And one more thing: is it possible to ___?
+
+Okay, that sounds good.
+Thanks for your help. That's all I needed to know.</div>
+<p class="ko">질문은 어렵게 만들 필요 없다. <b>가격 / 시간 / 위치 / 예약 / 준비물 / 변경 가능 여부</b> 조합이면 됨.</p>
+</div>
+
+<div class="card">
+<h3>5-2. 문제 해결: 예약/약속/상품에 문제가 생김</h3>
+<div class="script">Hi, I'm calling about ___.
+There's a small problem. I was supposed to ___, but ___.
+
+Would it be possible to ___ instead?
+If that's not available, could I ___?
+I'm pretty flexible, so another time/day would also work for me.
+
+Great, that works for me.
+Thank you for helping me sort this out.</div>
+</div>
+
+<div class="card">
+<h3>5-3. 친구에게 상황 설명 + 대안 2개</h3>
+<div class="script">Hey, I'm really sorry, but something came up and I don't think I can ___ as planned.
+The problem is ___.
+
+How about we ___ instead?
+Or, if that's difficult, we could ___.
+
+Let me know which one works better for you.
+Sorry again about the change.</div>
+</div>
+
+<div class="card">
+<h3>5-4. 실제 비슷한 경험 말하기</h3>
+<p>롤플레이 뒤에 “Have you ever experienced something like this?”가 오면 바로 아래 구조.</p>
+<div class="script">Yes, actually, something similar happened to me once.
+I was trying to ___, but ___.
+At first, I thought ___.
+So I ___.
+Luckily / Unfortunately, ___.
+Since then, I always ___.</div>
+</div>
+</section>
+
+<section id="unexpected">
+<h2>6. 돌발 질문을 모를 때 살아남는 법</h2>
+<div class="card">
+<h3>주제를 잘 모른다 ≠ 대답 못 한다</h3>
+<p>예: “recycling system”이 자세히 생각 안 나도 시스템 설명 대신 <b>내가 아는 일상 경험</b>으로 축소.</p>
+<div class="script">To be honest, I don't know a lot about the system itself,
+but I can tell you what I usually do.
+
+In my neighborhood, we separate things like plastic, paper, and general waste.
+At first, I found the rules a little confusing, but I got used to them.
+Now it's just part of my routine.
+I think the main reason people do it is to reduce waste and make recycling easier.</div>
+</div>
+
+<div class="card">
+<h3>AL용 “문제 발생” 6종 세트</h3>
+<table>
+<tr><th>문제</th><th>영어 표현</th><th>해결</th></tr>
+<tr><td>시간 부족</td><td class="en">I was running out of time.</td><td>schedule changed / skipped one thing</td></tr>
+<tr><td>예약 문제</td><td class="en">There was a problem with my reservation.</td><td>called / changed time</td></tr>
+<tr><td>길/교통</td><td class="en">I realized I was going the wrong way.</td><td>checked map / asked someone</td></tr>
+<tr><td>품절/이용 불가</td><td class="en">What I wanted wasn't available.</td><td>chose an alternative</td></tr>
+<tr><td>날씨</td><td class="en">The weather suddenly changed.</td><td>changed indoor/outdoor plan</td></tr>
+<tr><td>기기/앱 오류</td><td class="en">The app wasn't working properly.</td><td>restarted / used another method</td></tr>
+</table>
+<p class="small">이 여섯 개만 자기 경험에 붙여도 상당수의 “unexpected complication” 질문을 처리할 수 있다.</p>
+</div>
+</section>
+
+<section id="schedule">
+<h2>7. 수요일 저녁 → 일요일 오전 3.5일 플랜</h2>
+
+<div class="card">
+<h3>수요일 저녁 — 진단 + 만능 블록</h3>
+<div class="checklist">
+<label><input type="checkbox"> 만능 시작/복구/경험/비교 문장 20개를 소리 내어 3회</label>
+<label><input type="checkbox"> 집·카페·영화·여행·일/학교 각 1문제씩 90초 녹음</label>
+<label><input type="checkbox"> 녹음 후 “짧음 / 나열 / 과거 없음 / 침묵” 표시</label>
+<label><input type="checkbox"> 가장 못한 2개만 다시 녹음</label>
+</div>
+<div class="key good"><b>오늘 목표:</b> 영어 공부를 많이 하는 게 아니라 “내가 왜 IM3였는지”를 음성으로 확인.</div>
+</div>
+
+<div class="card">
+<h3>목요일 — 과거 경험 DAY</h3>
+<p><b>에피소드 8개를 만든다.</b> 스크립트 완성문을 외우지 말고 키워드 5개만.</p>
+<table>
+<tr><th>에피소드</th><th>5개 키워드 예시</th></tr>
+<tr><td>최근 여행</td><td>destination → plan → time problem → changed plan → relieved</td></tr>
+<tr><td>카페</td><td>busy day → quiet café → window → coffee → relaxed</td></tr>
+<tr><td>영화</td><td>friend → action movie → expected little → loved it → recommend</td></tr>
+<tr><td>일/학교 프로젝트</td><td>task → difficulty → tool/method → solved → learned</td></tr>
+<tr><td>약속 변경</td><td>schedule conflict → call → alternative → agreed → lesson</td></tr>
+<tr><td>쇼핑/주문 문제</td><td>wanted item → unavailable → asked → alternative → okay</td></tr>
+<tr><td>교통 문제</td><td>wrong direction → checked map → changed route → arrived</td></tr>
+<tr><td>날씨 문제</td><td>outdoor plan → rain → indoor plan → still fun</td></tr>
+</table>
+<p><b>훈련:</b> 같은 에피소드를 질문만 바꿔 3번 말하기. “최근 경험 / 기억나는 경험 / 문제 생긴 경험”.</p>
+</div>
+
+<div class="card">
+<h3>금요일 — 비교 + 변화 + 의견 DAY</h3>
+<div class="checklist">
+<label><input type="checkbox"> 과거 vs 현재 8문제</label>
+<label><input type="checkbox"> 기술/생활 변화 5문제</label>
+<label><input type="checkbox"> 의견 5문제</label>
+<label><input type="checkbox"> 답마다 “biggest difference / example / overall” 넣기</label>
+</div>
+<p class="key">금요일부터 <b>한 답변에 과거·현재를 섞어서 말하는 습관</b>을 만든다.</p>
+</div>
+
+<div class="card">
+<h3>토요일 — 실전 모의 + 롤플레이</h3>
+<div class="checklist">
+<label><input type="checkbox"> 오전: 랜덤 12~15문제, 중간에 멈추지 않고 끝까지</label>
+<label><input type="checkbox"> 오후: 최악의 5문제만 재녹음</label>
+<label><input type="checkbox"> 저녁: 롤플레이 6개 + 돌발 6개</label>
+<label><input type="checkbox"> 밤: 새로운 표현 금지. 이미 쓰는 표현만 다듬기</label>
+</div>
+<div class="key bad"><b>금지:</b> 토요일 밤에 AL 템플릿 100문장 새로 외우기 / 발음 완벽주의 / 스크립트 통암기.</div>
+</div>
+
+<div class="card">
+<h3>일요일 시험 전</h3>
+<ul>
+<li>자기소개 1회 — 워밍업용. 여기에 체력 쓰지 않는다.</li>
+<li>과거 경험 2개, 비교 1개, 롤플레이 1개만 입 풀기.</li>
+<li>평소보다 <b>10~15% 천천히</b>. 너무 빨리 말하다 문장이 무너지는 것 방지.</li>
+<li>막히면 2초 이상 무음보다 복구문장 사용.</li>
+<li>“어려운 영어”가 아니라 <b>끊기지 않는 영어</b>.</li>
+</ul>
+</div>
+</section>
+
+<section id="drill">
+<h2>8. 랜덤 90초 훈련기</h2>
+<div class="card interactive">
+<div id="prompt" class="prompt">버튼을 눌러 랜덤 질문을 뽑으세요.</div>
+<button onclick="newPrompt()">랜덤 질문</button>
+<button class="secondary" onclick="startTimer(90)">90초 시작</button>
+<button class="secondary" onclick="startTimer(60)">60초 시작</button>
+<div id="timer" class="timer">01:30</div>
+<p class="small">규칙: 준비 5초 → 바로 말하기. 완벽한 문장을 생각하고 시작하지 않는다.</p>
+</div>
+</section>
+
+<section id="check">
+<h2>9. 답변 하나 끝날 때마다 30초 자가채점</h2>
+<div class="card checklist">
+<label><input type="checkbox"> 질문에 첫 1~2문장 안에 바로 답했나?</label>
+<label><input type="checkbox"> 하나의 중심 이야기/의견이 있었나?</label>
+<label><input type="checkbox"> 이유를 “because it is fun”에서 끝내지 않았나?</label>
+<label><input type="checkbox"> 구체적 예/장면을 하나 넣었나?</label>
+<label><input type="checkbox"> 과거 질문이면 사건의 순서가 있었나?</label>
+<label><input type="checkbox"> 비교 질문이면 biggest difference가 분명했나?</label>
+<label><input type="checkbox"> 문제 질문이면 complication → action → result가 있었나?</label>
+<label><input type="checkbox"> 2초 넘는 침묵 대신 복구 전략을 썼나?</label>
+<label><input type="checkbox"> 문장들을 and만으로 이어붙이지 않았나?</label>
+<label><input type="checkbox"> 최소 60초, 목표 75~100초 정도 자연스럽게 말했나?</label>
+</div>
+
+<div class="card">
+<h3>내 답이 IM형인지 IH/AL형인지 빠르게 보는 법</h3>
+<table>
+<tr><th>체크</th><th>해석</th></tr>
+<tr><td>현재 사실만 5~6문장</td><td>IM형 가능성 높음</td></tr>
+<tr><td>이유 + 예시 + 경험으로 1분 이상</td><td>IH 쪽으로 좋아짐</td></tr>
+<tr><td>과거 사건을 연결해서 이야기</td><td>Advanced 기능 증거</td></tr>
+<tr><td>예상 못한 문제를 설명하고 해결</td><td>Advanced 핵심 기능 연습</td></tr>
+<tr><td>틀린 문장을 스스로 자연스럽게 수정</td><td>실제 대화 지속 능력에 도움</td></tr>
+</table>
+</div>
+</section>
+
+<section>
+<h2>10. 시험장에서 기억할 7줄</h2>
+<div class="card" style="font-size:18px">
+<p>1. <b>질문에 먼저 답한다.</b></p>
+<p>2. 한 답변에 <b>핵심은 하나</b>만.</p>
+<p>3. 이유만 말하지 말고 <b>장면 하나</b>를 보여준다.</p>
+<p>4. 경험 질문은 <b>At first → problem/change → so I → in the end</b>.</p>
+<p>5. 비교 질문은 <b>biggest difference</b>부터.</p>
+<p>6. 모르는 단어는 <b>설명해서 우회</b>.</p>
+<p>7. 틀려도 괜찮다. <b>멈추지 말고 고쳐서 계속 말한다.</b></p>
+</div>
+</section>
+
+<footer>
+<p><b>기준 메모:</b> ACTFL OPIc는 Functions/Tasks, Accuracy, Context/Content, Text Type를 종합적으로 평가한다. Advanced 범위에서는 주요 시간대의 서술·묘사, 문단 길이의 연결된 발화, 예상치 못한 복잡한 상황 처리 능력이 핵심이다. 이 파일의 질문 목록은 공식 기출 보장이 아니라 해당 기능을 집중 훈련하기 위한 연습 세트다.</p>
+<p class="print-note">인쇄 모드: 인터랙티브 버튼은 숨겨지고 학습 내용만 출력됩니다.</p>
+</footer>
+</main>
+
+<script>
+const prompts = [
+"Describe your favorite place in your neighborhood. What does it look like, and why do you like it?",
+"Tell me about a memorable time you went to a café or restaurant.",
+"Tell me about a recent trip. What did you do, and what was the most memorable part?",
+"Tell me about a time something unexpected happened while you were traveling. How did you handle it?",
+"How is the way you watch movies different now from when you were younger?",
+"Describe what you usually do when you watch a movie at home.",
+"Tell me about the most memorable movie you have seen recently and explain why it stood out.",
+"Describe your home. What is your favorite part of it?",
+"How has your neighborhood changed over the years?",
+"Tell me about a memorable event that happened in your neighborhood.",
+"Describe a typical weekday for you.",
+"Tell me about a project or task that was difficult at first but became easier later.",
+"How has technology changed the way people work or study?",
+"What is one technology you use often? Explain how you use it and why it is useful.",
+"Tell me about a time an app or device did not work properly. What did you do?",
+"Call a restaurant and ask three or four questions before making a reservation.",
+"You made plans with a friend, but you cannot go. Explain the problem and suggest two alternatives.",
+"You booked something, but there is a problem with the reservation. Call and solve the problem.",
+"Tell me about a time you had to change your plans unexpectedly.",
+"Compare traveling alone and traveling with other people. Which do you prefer and why?",
+"How have shopping habits changed compared to the past?",
+"What do you think are the advantages and disadvantages of using AI tools?",
+"Describe how people in your country use mobile apps in everyday life.",
+"Tell me about a time the weather changed your plans.",
+"Describe a place you go when you want to relax.",
+"Compare going to a movie theater with watching movies at home.",
+"Tell me about a recent experience that was stressful at first but turned out well.",
+"What is something you used to do often but do differently now?"
+];
+function newPrompt(){
+  document.getElementById("prompt").textContent = prompts[Math.floor(Math.random()*prompts.length)];
+}
+let timerInt=null;
+function startTimer(seconds){
+  if(timerInt) clearInterval(timerInt);
+  let s=seconds;
+  const el=document.getElementById("timer");
+  const draw=()=>{ let m=Math.floor(s/60); let r=s%60; el.textContent=String(m).padStart(2,'0')+":"+String(r).padStart(2,'0'); };
+  draw();
+  timerInt=setInterval(()=>{
+    s--; draw();
+    if(s<=0){clearInterval(timerInt); timerInt=null; el.textContent="DONE"; }
+  },1000);
+}
+</script>
+</body>
+</html>
